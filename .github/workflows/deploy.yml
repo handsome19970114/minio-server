@@ -1,0 +1,15 @@
+# Deployment workflow
+
+on: push
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy
+        env:
+          ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        run: |
+          docker-compose up -d
